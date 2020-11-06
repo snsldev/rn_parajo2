@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   SplashScreen_ChildView: {
     //justifyContent: 'center',
-   // alignItems: 'center',
+    //alignItems: 'center',
     flex: 1,
   },
 });
