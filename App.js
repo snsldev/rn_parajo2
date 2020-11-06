@@ -1,4 +1,4 @@
-import React, { Component, StrictMode } from 'react';
+import React, { Component, StrictMode, Fragment } from 'react';
 import {SafeAreaView , ScrollView, RefreshControl, StyleSheet, View, Modal, Text, Button, Image , Platform} from 'react-native';
 import { WebView } from 'react-native-webview';
 
@@ -98,29 +98,29 @@ export default class App extends Component {
     );
 
     return (
-      <SafeAreaView style = {styles.MainContainer}>   
-        <ScrollView
-        contentContainerStyle={styles.scrollView}
-        refreshControl={
-           <RefreshControl refreshing={this.state.refreshing} enabled={this.state.refreshing_enable} onRefresh={this.onRefresh}/>
-        } 
-        >
-        { <WebView
-          bounces={false}
-          enableNavigate={false}
-          ref={ref => (this.webview = ref)}
-          source={{ uri: this.state.uri }}
-          //onNavigationStateChange={this.handleWebViewNavigationStateChange}
-          // onMessage={this.handleDataReceived}
-          cacheEnabled={false}
-          // pullToRefreshEnabled={true}
-          cacheMode={'LOAD_NO_CACHE'}
-        /> }
-        </ScrollView>
-        {
-            (this.state.isSplashVisible === true) ? Splash_Screen: null
-        }
-      </SafeAreaView>
+      <Fragment>   
+        <SafeAreaView style = {styles.MainContainer}>   
+          <ScrollView
+          contentContainerStyle={styles.scrollView}
+          refreshControl={
+            <RefreshControl refreshing={this.state.refreshing} enabled={this.state.refreshing_enable} onRefresh={this.onRefresh}/>
+          } 
+          >
+          { <WebView
+            bounces={false}
+            enableNavigate={false}
+            ref={ref => (this.webview = ref)}
+            source={{ uri: this.state.uri }}
+            //onNavigationStateChange={this.handleWebViewNavigationStateChange}
+            // onMessage={this.handleDataReceived}
+            cacheEnabled={false}
+            // pullToRefreshEnabled={true}
+            cacheMode={'LOAD_NO_CACHE'}
+          /> }
+          </ScrollView>
+        </SafeAreaView>
+            {(this.state.isSplashVisible === true) ? Splash_Screen: null}
+      </Fragment>
     );
   }
 }
@@ -128,7 +128,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
-    marginTop: (Platform.OS == 'ios') ? 20 : 0,
+    //marginTop: (Platform.OS == 'ios') ? 20 : 0,
   },
   scrollView: {
     flex: 1,
@@ -142,8 +142,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   SplashScreen_ChildView: {
-    //justifyContent: 'center',
-    //alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     flex: 1,
   },
 });
